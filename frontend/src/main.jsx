@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 
 import HomePage from './landing_page/home/HomePage';
 import Signup from './landing_page/signup/Signup';
 import AboutPage from './landing_page/about/AboutPage';
-import ProductsPage from './landing_page/products/ProductsPage';
-import PricingPage from './landing_page/profile/PricingPage';
+import ProfilePage from './landing_page/profile/ProfilePage';
 import SupportPage from './landing_page/support/SupportPage';
 import Login from './landing_page/login/login';
 
@@ -24,8 +23,7 @@ root.render(
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route path='/about' element={<AboutPage />} />
-      <Route path='/products' element={<ProductsPage />} />
-      <Route path='/pricing' element={<PricingPage />} />
+      <Route path='/profile' element={<ProfilePage />} />
       <Route path='/support' element={<SupportPage />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

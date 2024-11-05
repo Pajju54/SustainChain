@@ -1,9 +1,16 @@
 const express = require('express');
-const app = express();
 const mysql = require('mysql2');
-require('dotenv').config();
 const cors = require('cors');
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
+require('dotenv').config();
+const cookieParser = require('cookie-parser'); 
+
+const signupRoute = require('./auth/signup');
+const loginRoute = require("./auth/login");
+const profileRoute = require('./auth/profile');
+
+const app = express();
+const PORT = 8080;
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -20,15 +27,24 @@ db.connect((err) => {
     console.log('Connected to the MySQL database');
 });
 
-app.use(cors({ methods: ["GET", "POST", "PUT", "DELETE"], credentials: true }));
+app.use(cors({
+    origin: 'http://localhost:5173', 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cookieParser());
 
+app.use('/signup', signupRoute(db));
+app.use('/login',loginRoute(db));
+app.use('/profile', profileRoute(db));
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.send("Homepage");
-})
+});
 
-app.listen(8080, () => { 
-    console.log("App is listening on PORT 8080");
-})
+app.listen(PORT, () => {
+    console.log(`App is listening on PORT ${PORT}`);
+});

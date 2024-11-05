@@ -43,10 +43,10 @@ function Navbar() {
               <li class="nav-item">
                 <Link class="nav-link active" to="/products">
                   Jobs
-                </Link> 
+                </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link active" to="/pricing">
+                <Link class="nav-link active" to="/profile">
                   Profile
                 </Link>
               </li>
