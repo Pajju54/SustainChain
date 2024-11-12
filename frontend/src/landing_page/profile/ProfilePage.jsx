@@ -14,7 +14,7 @@ function ProfilePage() {
         navigate("/sustainability-score", {
             state: { email: profile.ProfileID }, // Ensure email is passed correctly
         });
-    };    
+    };
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -114,7 +114,7 @@ function ProfilePage() {
                                                     </div>
                                                     <div className="col-sm-6">
                                                         <p className="m-b-10 f-w-600">Phone</p>
-                                                        <h6 className="text-muted f-w-400">98979989898</h6>
+                                                        <h6 className="text-muted f-w-400">{renderInfo(profile.PhoneNumber)}</h6>
                                                     </div>
                                                 </div>
                                                 <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
@@ -125,12 +125,20 @@ function ProfilePage() {
                                                     Address
                                                 </h6>
                                                 <p className="text-muted f-w-400">
-                                                    {renderInfo(profile.street)}, {renderInfo(profile.city)}, {renderInfo(profile.pincode)}
+                                                    {renderInfo(profile.Street)}, {renderInfo(profile.City)}, {renderInfo(profile.Pincode)}
                                                 </p>
                                                 <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
-                                                    Date of Birth
+                                                    Estd
                                                 </h6>
                                                 <p className="text-muted f-w-400">{renderInfo(profile.DOB)}</p>
+                                                <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                                                    Company Name
+                                                </h6>
+                                                <p className="text-muted f-w-400">{renderInfo(profile.CompanyName)}</p>
+                                                <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                                                    Certifications
+                                                </h6>
+                                                <p className="text-muted f-w-400">{renderInfo(profile.Certifications)}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -139,6 +147,23 @@ function ProfilePage() {
                         </div>
                     </div>
                 </div>
+
+                <h4>
+                    <center>
+                        <button className="btn btn-primary" style={{ padding: "10px" }}>
+                            <Link
+                                to="/editProfile"
+                                style={{
+                                    textDecoration: "none",
+                                    color: "white",
+                                    padding: "10px",
+                                }}
+                            >
+                                Edit Your Profile
+                            </Link>
+                        </button>
+                    </center>
+                </h4>
 
                 <h4>
                     <center>
@@ -151,11 +176,10 @@ function ProfilePage() {
                                 padding: "10px",
                             }}
                         >
-                            Go to Sustainability Dashboard
+                            Calculate Score
                         </button>
                     </center>
                 </h4>
-
 
                 <div className="text-center mt-3 mb-5">
                     <button onClick={handleLogout} className="btn btn-danger">
