@@ -56,6 +56,7 @@ function DashboardPage() {
                     <tr>
                         <th>Profile ID</th>
                         <th>Company Name</th>
+                        <th>Product Names</th>
                         <th>Certifications</th>
                         <th>Sustainability Score</th>
                     </tr>
@@ -65,6 +66,7 @@ function DashboardPage() {
                         <tr key={index}>
                             <td>{company.ProfileID}</td>
                             <td>{company.CompanyName}</td>
+                            <td>{company.Products}</td>
                             <td>{company.Certifications}</td>
                             <td>{company.Total_Score}</td>
                         </tr>
