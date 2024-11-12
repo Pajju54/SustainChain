@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './SustainabilityDashboard.css';
 
 function SustainabilityDashboard() {
+    const location = useLocation();
+    const emailFromLocation = location.state?.email || ''; // Retrieve email from ProfilePage
+
     const [formData, setFormData] = useState({
+        email: '',
         energyUsage: '',
         waterConsumption: '',
         wasteGeneration: '',
@@ -19,40 +22,42 @@ function SustainabilityDashboard() {
 
     const [errors, setErrors] = useState({});
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        if (value > 100) {
-            setErrors({
-                ...errors,
-                [name]: 'Value must be under 100'
-            });
-        } else {
-            setErrors({
-                ...errors,
-                [name]: ''
-            });
+    useEffect(() => {
+        // Check and set email only when it's available from location.state
+        if (emailFromLocation) {
+            setFormData((prevData) => ({
+                ...prevData,
+                email: emailFromLocation
+            }));
         }
+    }, [emailFromLocation]); // Trigger only if emailFromLocation changes
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value,
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (Object.values(errors).some(error => error !== '')) {
-            console.log('Please fix the errors before submitting');
-            return;
-        }
-
         try {
-            const response = await axios.post('http://localhost:8080/sustainability/calculate-score', formData);
-            console.log(response.data);
+            const response = await fetch("http://localhost:8080/sustainability/calculate-score", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                console.log("Form submitted successfully!");
+            } else {
+                console.error("Form submission failed.");
+            }
         } catch (error) {
-            console.error('Error submitting form data:', error);
+            console.error("Error submitting form:", error);
         }
     };
 
@@ -70,7 +75,7 @@ function SustainabilityDashboard() {
                             name={field}
                             className="form-control"
                             value={formData[field]}
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             max="100" // Restrict the max value
                         />
                         {errors[field] && <small className="text-danger">{errors[field]}</small>}

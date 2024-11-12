@@ -113,7 +113,23 @@ ALTER TABLE Sustainability_Score
     CHANGE COLUMN SupplyChain_TransportationEmissions TransportationEmissions FLOAT,
     CHANGE COLUMN SupplyChain_MaterialSourcing MaterialSourcing FLOAT;
 
+CREATE TABLE Audit_Log (
+    LogID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID VARCHAR(255),
+    EventType VARCHAR(50),
+    EventTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
+
+DELIMITER //
+CREATE TRIGGER log_user_signup
+AFTER INSERT ON Login_Credentials
+FOR EACH ROW
+BEGIN
+    INSERT INTO Audit_Log (UserID, EventType)
+    VALUES (NEW.ID, 'User Signup');
+END //
+DELIMITER ;
 
 
 
