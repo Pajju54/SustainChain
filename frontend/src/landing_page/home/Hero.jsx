@@ -14,9 +14,9 @@ function Hero() {
                         <img className="w-25 h-25" src="media/images/SupplyChain_img3.jpeg" alt="Sustainability Image 3" />
                     </div>
                     <br />
-                    <button className='p-2 btn btn-primary fs-5 mb-5' style={{ width: "20%", margin: "0 auto" }}>
-                        <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}>Join SustainChain</Link>
-                    </button>
+                    <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}><button className='p-2 btn btn-primary fs-5 mb-5' style={{ width: "20%", margin: "0 auto" }}>
+                        Join SustainChain
+                    </button></Link>
                 </div>
             </center>
         </div>
