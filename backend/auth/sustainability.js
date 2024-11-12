@@ -20,8 +20,8 @@ module.exports = (db) => {
             MaterialSourcing
         } = req.body;
 
-        console.log('hsd')
-        // console.log("Request Body", req.body)
+        console.log('hsd');
+        console.log("Request Body", req.body);
 
         db.query(
             'SELECT * FROM login_credentials WHERE ID= ?',
@@ -34,7 +34,7 @@ module.exports = (db) => {
                 if (results.length === 0) {
                     return res.status(400).json({ success: false, error: "Manufacturer does not exist" });
                 }
-                // console.log("inside 1");
+                console.log("inside 1");
 
                 // Manufacturer exists, proceed with calculating the scores
                 const calculateEnvironmentalScore = (energyUsage, waterConsumption, wasteGeneration, recyclingRate) => (
@@ -74,6 +74,7 @@ module.exports = (db) => {
                     (finalSocialScore * 0.3) +
                     (finalSupplyChainScore * 0.3);
 
+  
                 console.log("Total scor :",totalScore);
                 db.query(
                     `INSERT INTO Sustainability_Score (

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import {useNavigate, useLocation } from 'react-router-dom';
 import './SustainabilityDashboard.css';
 import { Link } from 'react-router-dom';
 
 function SustainabilityDashboard() {
     const location = useLocation();
+    const navigate = useNavigate();
     const emailFromLocation = location.state?.email || ''; // Retrieve email from ProfilePage
 
     const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ function SustainabilityDashboard() {
     useEffect(() => {
         // Check and set email only when it's available from location.state
         if (emailFromLocation) {
-            console.log("Setting email from location:", emailFromLocation); // Add this line for debugging
+            // console.log("Setting email from location:", emailFromLocation); // Add this line for debugging
             setFormData((prevData) => ({
                 ...prevData,
                 email: emailFromLocation
@@ -59,6 +60,7 @@ function SustainabilityDashboard() {
     
             if (response.ok) {
                 console.log("Form submitted successfully!");
+                navigate("/profile");
             } else {
                 console.error("Form submission failed.");
             }
@@ -88,7 +90,7 @@ function SustainabilityDashboard() {
                         {errors[field] && <small className="text-danger">{errors[field]}</small>}
                     </div>
                 ))}
-                <Link to="/profile"><button type="submit" className="btn btn-primary mt-3">Submit</button></Link>
+                <button type="submit" className="btn btn-primary mt-3">Submit</button>
             </form>
         </div>
     );

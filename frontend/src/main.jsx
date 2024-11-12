@@ -11,6 +11,7 @@ import SupportPage from './landing_page/support/SupportPage';
 import Login from './landing_page/login/login';
 import EditProfile from './landing_page/profile/EditProfile';
 import SustainabilityScorePage from './landing_page/sustainability/SustainabilityScorePage'
+import DashboardPage from './landing_page/dashboard/dashboardPage';
 
 import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
@@ -29,6 +30,7 @@ root.render(
       <Route path='/support' element={<SupportPage />} />
       <Route path="/sustainability-score" element={<SustainabilityScorePage />} />
       <Route path='/editProfile' element={<EditProfile />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
 
       <Route path='*' element={<NotFound />} />
     </Routes>

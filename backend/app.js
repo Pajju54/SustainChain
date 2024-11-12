@@ -47,6 +47,26 @@ app.get("/", (req, res) => {
     res.send("Homepage");
 });
 
+app.get('/dashboard', async (req, res) => {
+    try {
+        const query = 'CALL get_company_dashboard_data();'; // Call the stored procedure
+        db.query(query, (err, results) => {
+            if (err) {
+                console.error('Error fetching data:', err);
+                return res.status(500).json({ error: 'Failed to fetch data' });
+            }
+
+            // Return the results to the frontend
+            res.json({ companies: results[0] }); // MySQL returns the result set in an array
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+});
+
+
+
 app.post("/logout", (req, res) => {
     res.clearCookie("token");
     res.status(200).send({ message: "Logged out successfully" });

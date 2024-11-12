@@ -29,7 +29,7 @@ function ProfilePage() {
                 }
 
                 const data = await response.json();
-                console.log("User Profile Data:", data);
+                // console.log("User Profile Data:", data);
                 setUser(data.user);
                 setProfile(data.profile);
                 setLoading(false);

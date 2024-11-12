@@ -42,7 +42,7 @@ function EditProfile() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("coming here:",name, value);
+    // console.log("coming here:",name, value);
     setProfileData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -51,7 +51,7 @@ function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(profileData);  // Log the profileData to check its structure
+    // console.log(profileData);    // Log the profileData to check its structure
     try {
       const response = await fetch("http://localhost:8080/profile/update", {
         method: "PUT",
