@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require('uuid'); // for generating unique IDs
 
 module.exports = (db) => {
     router.post('/calculate-score', async (req, res) => {
+        // console.log("Request body received:", req.body);
         // Destructure the individual values directly from the request body
         const {
             email,
@@ -20,7 +21,7 @@ module.exports = (db) => {
         } = req.body;
 
         console.log('hsd')
-        console.log(req.body)
+        // console.log("Request Body", req.body)
 
         db.query(
             'SELECT * FROM login_credentials WHERE ID= ?',
@@ -33,7 +34,7 @@ module.exports = (db) => {
                 if (results.length === 0) {
                     return res.status(400).json({ success: false, error: "Manufacturer does not exist" });
                 }
-                console.log("inside 1");
+                // console.log("inside 1");
 
                 // Manufacturer exists, proceed with calculating the scores
                 const calculateEnvironmentalScore = (energyUsage, waterConsumption, wasteGeneration, recyclingRate) => (
@@ -47,6 +48,7 @@ module.exports = (db) => {
                 const calculateSupplyChainScore = (supplierEthics, transportationEmissions, materialSourcing) => (
                     supplierEthics * 0.4 + transportationEmissions * 0.3 + materialSourcing * 0.3
                 );
+
 
                 // Calculate the final scores
                 const finalEnvironmentalScore = calculateEnvironmentalScore(

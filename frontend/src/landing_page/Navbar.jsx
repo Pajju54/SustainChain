@@ -41,8 +41,8 @@ function Navbar() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link active" to="/sustainability-score">
-                  Score
+                <Link class="nav-link active" to="/dashboard">
+                  Dashboard
                 </Link>
               </li>
               <li class="nav-item">
