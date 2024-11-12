@@ -4,28 +4,15 @@ import "./EditProfile.css";
 
 function EditProfile() {
   const [profileData, setProfileData] = useState({
-    companyName: "",
-    productDetails: "",
-    quantity: "",
-    laborPractices: "",
-    ecoFriendlyMaterials: "",
-    energyConsumption: "",
-    wasteManagement: "",
-    fairWages: "",
-    certifications: "",
-    street: "",
-    city: "",
-    pincode: "",
-    about: "",
-    website: "",
-    establishedYear: "",
-    additionalNotes: "",
-    environmentalImpact: "",
-    supplyChainTransparency: "",
-    ethicalSourcing: "",
-    employeeWelfare: "",
-    renewableEnergyUse: "",
-    dob: ""
+    About: "",
+    Street: "",
+    City: "",
+    Pincode: "",
+    DOB: "",
+    CompanyName: "",
+    PhoneNumber: "",
+    Certifications: "",
+    ProfileID: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -41,6 +28,7 @@ function EditProfile() {
         });
         const data = await response.json();
         if (data.profile) {
+          // console.log(data.profile);  
           setProfileData(data.profile);  // Ensure the data matches with the backend profile keys
         }
         setLoading(false);
@@ -54,6 +42,7 @@ function EditProfile() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("coming here:",name, value);
     setProfileData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -88,187 +77,100 @@ function EditProfile() {
 
   return (
     <div className="edit-profile-container">
-      <h2 className="edit-profile-title mt-4">Manufacturer Sustainability Questionnaire</h2>
+      <h2 className="edit-profile-title mt-4">Edit Profile</h2>
       <form
         onSubmit={handleSubmit}
         className="edit-profile-form shadow p-4 rounded"
       >
         <div className="form-group mb-3">
-          <label htmlFor="companyName">Company Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="companyName"
-            name="companyName"
-            value={profileData.companyName}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="productDetails">What products do you manufacture?</label>
+          <label htmlFor="about">About</label>
           <textarea
             className="form-control"
-            id="productDetails"
-            name="productDetails"
-            value={profileData.productDetails}
+            id="about"
+            name="About"
+            value={profileData.About}
             onChange={handleChange}
           ></textarea>
         </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="quantity">Annual Production Quantity</label>
-          <input
-            type="number"
-            className="form-control"
-            id="quantity"
-            name="quantity"
-            value={profileData.quantity}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="ecoFriendlyMaterials">Do you use eco-friendly materials? If so, specify.</label>
-          <textarea
-            className="form-control"
-            id="ecoFriendlyMaterials"
-            name="ecoFriendlyMaterials"
-            value={profileData.ecoFriendlyMaterials}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="energyConsumption">Annual Energy Consumption (kWh)</label>
-          <input
-            type="number"
-            className="form-control"
-            id="energyConsumption"
-            name="energyConsumption"
-            value={profileData.energyConsumption}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="wasteManagement">What waste management practices do you follow?</label>
-          <textarea
-            className="form-control"
-            id="wasteManagement"
-            name="wasteManagement"
-            value={profileData.wasteManagement}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="fairWages">Do you provide fair wages to workers? (Yes/No)</label>
-          <input
-            type="text"
-            className="form-control"
-            id="fairWages"
-            name="fairWages"
-            value={profileData.fairWages}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="form-group mb-3">
-          <label htmlFor="certifications">List any environmental or labor certifications.</label>
-          <textarea
-            className="form-control"
-            id="certifications"
-            name="certifications"
-            value={profileData.certifications}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-
         <div className="form-group mb-3">
           <label htmlFor="street">Street</label>
           <input
             type="text"
             className="form-control"
             id="street"
-            name="street"
-            value={profileData.street}
+            name="Street"
+            value={profileData.Street}
             onChange={handleChange}
           />
         </div>
-
         <div className="form-group mb-3">
           <label htmlFor="city">City</label>
           <input
             type="text"
             className="form-control"
             id="city"
-            name="city"
-            value={profileData.city}
+            name="City"
+            value={profileData.City}
             onChange={handleChange}
           />
         </div>
-
         <div className="form-group mb-3">
           <label htmlFor="pincode">Pincode</label>
           <input
             type="text"
             className="form-control"
             id="pincode"
-            name="pincode"
-            value={profileData.pincode}
+            name="Pincode"
+            value={profileData.Pincode}
             onChange={handleChange}
           />
         </div>
-
-        {/* Additional Fields */}
         <div className="form-group mb-3">
-          <label htmlFor="about">About the Company</label>
-          <textarea
+          <label htmlFor="DOB">Estd</label>
+          <input
+            type="date"
             className="form-control"
-            id="about"
-            name="about"
-            value={profileData.about}
+            id="DOB"
+            name="DOB"
+            value={profileData.DOB}
             onChange={handleChange}
-          ></textarea>
+          />
         </div>
-
         <div className="form-group mb-3">
-          <label htmlFor="website">Website</label>
+          <label htmlFor="company_name">Company Name</label>
           <input
             type="text"
             className="form-control"
-            id="website"
-            name="website"
-            value={profileData.website}
+            id="company_name"
+            name="CompanyName"
+            value={profileData.CompanyName}
             onChange={handleChange}
           />
         </div>
-
         <div className="form-group mb-3">
-          <label htmlFor="establishedYear">Year Established</label>
+          <label htmlFor="phone_number">Phone Number</label>
           <input
-            type="number"
+            type="text"
             className="form-control"
-            id="establishedYear"
-            name="establishedYear"
-            value={profileData.establishedYear}
+            id="phone_number"
+            name="PhoneNumber"
+            value={profileData.PhoneNumber}
             onChange={handleChange}
           />
         </div>
-
         <div className="form-group mb-3">
-          <label htmlFor="additionalNotes">Additional Notes</label>
+          <label htmlFor="certifications">Certifications</label>
           <textarea
             className="form-control"
-            id="additionalNotes"
-            name="additionalNotes"
-            value={profileData.additionalNotes}
+            id="certifications"
+            name="Certifications"
+            value={profileData.Certifications}
             onChange={handleChange}
           ></textarea>
         </div>
-
-        <button type="submit" className="btn btn-primary">Save Changes</button>
+        <button type="submit" className="btn btn-primary w-100">
+          Save Changes
+        </button>
       </form>
     </div>
   );
