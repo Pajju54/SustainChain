@@ -8,8 +8,13 @@ function ProfilePage() {
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
-
     const navigate = useNavigate();
+
+    const handleGoToDashboard = () => {
+        navigate("/sustainability-score", {
+            state: { email: profile.ProfileID }, // Ensure email is passed correctly
+        });
+    };    
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -47,8 +52,6 @@ function ProfilePage() {
             if (response.ok) {
                 localStorage.clear();
                 sessionStorage.clear();
-
-                // Use navigate here after clearing session data
                 navigate("/login", { state: { message: "Logged out successfully!" } });
             } else {
                 console.error("Logout failed");
@@ -73,7 +76,6 @@ function ProfilePage() {
     }
 
     const renderInfo = (info) => {
-        console.log(info);
         return info ? info : "Information not available";
     };
 
@@ -129,23 +131,6 @@ function ProfilePage() {
                                                     Date of Birth
                                                 </h6>
                                                 <p className="text-muted f-w-400">{renderInfo(profile.DOB)}</p>
-                                                <ul className="social-link list-unstyled m-t-40 m-b-10">
-                                                    <li>
-                                                        <a href="#!" data-toggle="tooltip" title="facebook">
-                                                            <i className="mdi mdi-facebook feather icon-facebook facebook"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#!" data-toggle="tooltip" title="twitter">
-                                                            <i className="mdi mdi-twitter feather icon-twitter twitter"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#!" data-toggle="tooltip" title="instagram">
-                                                            <i className="mdi mdi-instagram feather icon-instagram instagram"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -157,8 +142,8 @@ function ProfilePage() {
 
                 <h4>
                     <center>
-                        <Link
-                            to="/editProfile"
+                        <button
+                            onClick={handleGoToDashboard}
                             className="btn btn-primary"
                             style={{
                                 textDecoration: "none",
@@ -166,10 +151,11 @@ function ProfilePage() {
                                 padding: "10px",
                             }}
                         >
-                            Edit Your Profile
-                        </Link>
+                            Go to Sustainability Dashboard
+                        </button>
                     </center>
                 </h4>
+
 
                 <div className="text-center mt-3 mb-5">
                     <button onClick={handleLogout} className="btn btn-danger">
