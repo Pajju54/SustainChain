@@ -19,11 +19,9 @@ function SustainabilityDashboard() {
 
     const [errors, setErrors] = useState({});
 
-    // Handle input change and validate value to be under 100
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // If value exceeds 100, set an error
         if (value > 100) {
             setErrors({
                 ...errors,
@@ -36,7 +34,6 @@ function SustainabilityDashboard() {
             });
         }
 
-        // Update the form data
         setFormData({
             ...formData,
             [name]: value
@@ -46,7 +43,6 @@ function SustainabilityDashboard() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if there are any validation errors before submitting
         if (Object.values(errors).some(error => error !== '')) {
             console.log('Please fix the errors before submitting');
             return;
