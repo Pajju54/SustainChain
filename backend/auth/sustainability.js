@@ -19,7 +19,9 @@ module.exports = (db) => {
             MaterialSourcing
         } = req.body;
 
-        // Check if the manufacturer exists in the profile table using the email
+        console.log('hsd')
+        console.log(req.body)
+
         db.query(
             'SELECT * FROM login_credentials WHERE ID= ?',
             [email],
@@ -31,6 +33,7 @@ module.exports = (db) => {
                 if (results.length === 0) {
                     return res.status(400).json({ success: false, error: "Manufacturer does not exist" });
                 }
+                console.log("inside 1");
 
                 // Manufacturer exists, proceed with calculating the scores
                 const calculateEnvironmentalScore = (energyUsage, waterConsumption, wasteGeneration, recyclingRate) => (
@@ -69,7 +72,7 @@ module.exports = (db) => {
                     (finalSocialScore * 0.3) +
                     (finalSupplyChainScore * 0.3);
 
-                // Insert data into Sustainability_Score table
+                console.log("Total scor :",totalScore);
                 db.query(
                     `INSERT INTO Sustainability_Score (
                         ID,
