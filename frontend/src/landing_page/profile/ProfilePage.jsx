@@ -139,6 +139,10 @@ function ProfilePage() {
                                                     Certifications
                                                 </h6>
                                                 <p className="text-muted f-w-400">{renderInfo(profile.Certifications)}</p>
+                                                <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                                                    Product Names
+                                                </h6>
+                                                <p className="text-muted f-w-400">{renderInfo(profile.Products)}</p>
                                             </div>
                                         </div>
                                     </div>

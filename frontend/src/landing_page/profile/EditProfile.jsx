@@ -13,6 +13,7 @@ function EditProfile() {
     PhoneNumber: "",
     Certifications: "",
     ProfileID: "",
+    Products: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -165,6 +166,16 @@ function EditProfile() {
             id="certifications"
             name="Certifications"
             value={profileData.Certifications}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+        <div className="form-group mb-3">
+          <label htmlFor="products">Product Names</label>
+          <textarea
+            className="form-control"
+            id="products"
+            name="Products"
+            value={profileData.Products}
             onChange={handleChange}
           ></textarea>
         </div>

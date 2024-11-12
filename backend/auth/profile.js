@@ -80,6 +80,7 @@ module.exports = (db) => {
                 PhoneNumber,
                 Certifications,
                 ProfileID,
+                Products,
             } = req.body;
 
             console.log(req.body);
@@ -94,7 +95,8 @@ module.exports = (db) => {
                 DOB = ?,
                 CompanyName = ?,
                 PhoneNumber = ?,
-                Certifications = ?
+                Certifications = ?,
+                Products = ?
             WHERE ProfileID = ?;
 `;
 
@@ -110,6 +112,7 @@ module.exports = (db) => {
                     CompanyName,
                     PhoneNumber,
                     Certifications,
+                    Products,
                     ProfileID,
                 ],
                 (err, results) => {
