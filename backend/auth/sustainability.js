@@ -70,12 +70,7 @@ module.exports = (db) => {
                     MaterialSourcing
                 );
 
-                const totalScore = (finalEnvironmentalScore * 0.4) +
-                    (finalSocialScore * 0.3) +
-                    (finalSupplyChainScore * 0.3);
-
   
-                console.log("Total scor :",totalScore);
                 db.query(
                     `INSERT INTO Sustainability_Score (
                         ID,
@@ -84,8 +79,8 @@ module.exports = (db) => {
                         LaborCompliance, WorkerSafety, CommunityImpact,
                         SupplierEthics, TransportationEmissions,
                         MaterialSourcing,
-                        Environmental_Score, Social_Score, SupplyChain_Score, Total_Score, Date
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)`,
+                        Environmental_Score, Social_Score, SupplyChain_Score, Date
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)`,
                     [
                         email, // Use email for both ID and Manufacturer_ID
                         EnergyUsage, WaterConsumption,
@@ -93,7 +88,7 @@ module.exports = (db) => {
                         LaborCompliance, WorkerSafety, CommunityImpact,
                         SupplierEthics, TransportationEmissions,
                         MaterialSourcing,
-                        finalEnvironmentalScore, finalSocialScore, finalSupplyChainScore, totalScore
+                        finalEnvironmentalScore, finalSocialScore, finalSupplyChainScore
                     ],
                     (err, result) => {
                         if (err) {
@@ -107,7 +102,6 @@ module.exports = (db) => {
                                 environmental: finalEnvironmentalScore,
                                 social: finalSocialScore,
                                 supplyChain: finalSupplyChainScore,
-                                total: totalScore
                             }
                         });
                     }
