@@ -9,6 +9,8 @@ import AboutPage from './landing_page/about/AboutPage';
 import ProfilePage from './landing_page/profile/ProfilePage';
 import SupportPage from './landing_page/support/SupportPage';
 import Login from './landing_page/login/login';
+import EditProfile from './landing_page/profile/EditProfile';
+import SustainabilityScorePage from './landing_page/sustainability/SustainabilityScorePage'
 
 import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
@@ -18,13 +20,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Navbar />
-    <Routes>
+    <Routes>c;
       <Route path='/' element={<HomePage />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/profile' element={<ProfilePage />} />
       <Route path='/support' element={<SupportPage />} />
+      <Route path="/sustainability-score" element={<SustainabilityScorePage />} />
+      <Route path='/editProfile' element={<EditProfile />} />
+
       <Route path='*' element={<NotFound />} />
     </Routes>
     <Footer />

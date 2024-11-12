@@ -1,0 +1,110 @@
+.dashboard-container {
+    height: 100vh;
+    background: linear-gradient(135deg, #3b94e1, #2193b0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-card {
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-card .form-label {
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.dashboard-card .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.dashboard-card .form-control:focus {
+    border-color: #387ed1;
+    box-shadow: 0 0 5px rgba(56, 126, 209, 0.5);
+}
+
+.dashboard-card .form-group {
+    margin-bottom: 20px;
+}
+
+.dashboard-card .btn-primary {
+    background-color: #387ed1;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.dashboard-card .btn-primary:hover {
+    background-color: #2b6ca3;
+}
+
+.dashboard-card small.text-danger {
+    font-size: 0.875rem;
+    color: #d9534f;
+    display: block;
+    margin-top: 5px;
+}
+
+.dashboard-card .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.dashboard-card .form-group input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+}
+
+.dashboard-card .form-group input[type="number"]::-webkit-outer-spin-button,
+.dashboard-card .form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.dashboard-card .form-group input[type="number"]:invalid {
+    border-color: #d9534f;
+}
+
+.dashboard-card .form-check-label {
+    color: #555;
+}
+
+.dashboard-card .forgot-password {
+    color: #387ed1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.dashboard-card .forgot-password:hover {
+    text-decoration: underline;
+}
+
+.dashboard-card a {
+    color: #387ed1;
+    text-decoration: none;
+}
+
+.dashboard-card a:hover {
+    text-decoration: underline;
+}

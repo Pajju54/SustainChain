@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Hero from "./Hero.jsx";
+import OpenAccount from "../OpenAccount.jsx";
 import "./Profile.css";
 
 function ProfilePage() {
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -33,12 +37,39 @@ function ProfilePage() {
         fetchUserProfile();
     }, []);
 
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/logout", {
+                method: "POST",
+                credentials: "include",
+            });
+
+            if (response.ok) {
+                localStorage.clear();
+                sessionStorage.clear();
+
+                // Use navigate here after clearing session data
+                navigate("/login", { state: { message: "Logged out successfully!" } });
+            } else {
+                console.error("Logout failed");
+            }
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
 
     if (!user || !profile) {
-        return <div>No user data found</div>;
+        return (
+            <div className="mt-5 mb-5" style={{ textAlign: "center" }}>
+                <img src="media/images/no-data.png" alt="No data" />
+                <h2>No Data Found</h2>
+                <OpenAccount />
+            </div>
+        );
     }
 
     const renderInfo = (info) => {
@@ -122,6 +153,28 @@ function ProfilePage() {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h4>
+                    <center>
+                        <Link
+                            to="/editProfile"
+                            className="btn btn-primary"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                                padding: "10px",
+                            }}
+                        >
+                            Edit Your Profile
+                        </Link>
+                    </center>
+                </h4>
+
+                <div className="text-center mt-3 mb-5">
+                    <button onClick={handleLogout} className="btn btn-danger">
+                        Logout
+                    </button>
                 </div>
             </div>
         </>

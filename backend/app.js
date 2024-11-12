@@ -3,7 +3,8 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const cookieParser = require('cookie-parser'); 
+const cookieParser = require('cookie-parser');
+const sustainabilityRoute = require('./auth/sustainability');
 
 const signupRoute = require('./auth/signup');
 const loginRoute = require("./auth/login");
@@ -28,21 +29,27 @@ db.connect((err) => {
 });
 
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'http://localhost:5173',
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
-
+    
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
 
 app.use('/signup', signupRoute(db));
-app.use('/login',loginRoute(db));
+app.use('/login', loginRoute(db));
 app.use('/profile', profileRoute(db));
+app.use('/sustainability', sustainabilityRoute(db));
 
 app.get("/", (req, res) => {
     res.send("Homepage");
+});
+
+app.post("/logout", (req, res) => {
+    res.clearCookie("token");
+    res.status(200).send({ message: "Logged out successfully" });
 });
 
 app.listen(PORT, () => {
